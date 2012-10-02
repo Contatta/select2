@@ -165,8 +165,9 @@ Version: @@ver@@ Timestamp: @@timestamp@@
 
 .select2-search {
   display: inline-block;
-    white-space: nowrap;
-    z-index: 10000;
+  white-space: nowrap;
+  z-index: 10000;
+  position: relative;
   min-height: 26px;
   width: 100%;
   margin: 0;
@@ -359,6 +360,10 @@ disabled look for already selected choices in the results dropdown
     border-left: 0;
 }
 
+.select2-container.select2-container-disabled .select2-choice abbr {
+    display: none
+}
+
 
 /* multiselect */
 
@@ -509,3 +514,16 @@ disabled look for already selected choices in the results dropdown
 .select2-result-unselectable .select2-match { text-decoration: none; }
 
 .select2-offscreen { position: absolute; left: -10000px; }
+
+/* Retina-ize icons */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+	.select2-search input, .select2-search-choice-close, .select2-container .select2-choice abbr, .select2-container .select2-choice div b {
+		background-image: url('select2x2.png') !important;
+		background-repeat: no-repeat !important;
+		background-size: 60px 40px !important;
+	}
+	.select2-search input {
+		background-position: 100% -21px !important;
+	}
+}
