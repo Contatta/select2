@@ -1,17 +1,23 @@
 /*
- Copyright 2012 Igor Vaynberg
+Copyright 2012 Igor Vaynberg
 
- Version: @@ver@@ Timestamp: @@timestamp@@
+Version: @@ver@@ Timestamp: @@timestamp@@
 
- Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in
- compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
+This software is licensed under the Apache License, Version 2.0 (the "Apache License") or the GNU
+General Public License version 2 (the "GPL License"). You may choose either license to govern your
+use of this software only upon the condition that you accept all of the terms of either the Apache
+License or the GPL License.
 
- http://www.apache.org/licenses/LICENSE-2.0
+You may obtain a copy of the Apache License and the GPL License at:
 
- Unless required by applicable law or agreed to in writing, software distributed under the License is
- distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and limitations under the License.
- */
+    http://www.apache.org/licenses/LICENSE-2.0
+    http://www.gnu.org/licenses/gpl-2.0.html
+
+Unless required by applicable law or agreed to in writing, software distributed under the
+Apache License or the GPL Licesnse is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the Apache License and the GPL License for
+the specific language governing permissions and limitations under the Apache License and the GPL License.
+*/
  (function ($) {
  	if(typeof $.fn.each2 == "undefined"){
  		$.fn.extend({
@@ -877,9 +883,9 @@
         // abstract
         positionDropdown: function() {
             var offset = this.container.offset(),
-                height = this.container.outerHeight(true),
-                width = this.container.outerWidth(true),
-                dropHeight = this.dropdown.outerHeight(true),
+                height = this.container.outerHeight(false),
+                width = this.container.outerWidth(false),
+                dropHeight = this.dropdown.outerHeight(false),
                 viewportBottom = $(window).scrollTop() + document.documentElement.clientHeight,
                 dropTop = offset.top + height,
                 dropLeft = offset.left,
@@ -1397,7 +1403,7 @@
             var container = $("<div></div>", {
                 "class": "select2-container"
             }).html([
-                "    <a href='#' onclick='return false;' class='select2-choice'>",
+                "    <a href='javascript:void(0)' onclick='return false;' class='select2-choice'>",
                 "   <span></span><abbr class='select2-search-choice-close' style='display:none;'></abbr>",
                 "   <div><b></b></div>" ,
                 "</a>",
@@ -2068,7 +2074,7 @@
             var choice=$(
                     "<li class='select2-search-choice'>" +
                     "    <div></div>" +
-                    "    <a href='#' onclick='return false;' class='select2-search-choice-close' tabindex='-1'></a>" +
+                    "    <a href='javascript:void(0)' onclick='return false;' class='select2-search-choice-close' tabindex='-1'></a>" +
                     "</li>"),
                 id = this.id(data),
                 val = this.getVal(),
@@ -2145,7 +2151,7 @@
             });
 
             compound.each2(function(i, e) {
-                if (e.find(".select2-result-selectable").length==0) {
+                if (!e.is('.select2-result-selectable') && e.find(".select2-result-selectable").length==0) {  // FIX FOR HIRECHAL DATA
                     e.addClass("select2-disabled");
                 } else {
                     e.removeClass("select2-disabled");
